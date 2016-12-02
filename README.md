@@ -19,3 +19,11 @@ npm install
 
 ### 环境搭建成功
 
+## 测试服务
+
+```bash
+sudo npm instasll -g supervisor
+
+supervisor bin/www
+```
+
