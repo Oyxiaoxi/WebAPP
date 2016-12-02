@@ -15,7 +15,6 @@ cat package.json
 按装项目依赖
 npm install
 
-
 ```
 
 ### 环境搭建成功
