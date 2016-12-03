@@ -32,3 +32,19 @@ supervisor bin/www
 ```bash
 npm install express-session --save
 ```
+
+## 如何使用 node 开发服务程序
+
+##### 搞清楚路由机制，路由对应模块。如果有登陆，就用 session 作中间键，挂载！
+
+## React Native环境搭建
+
+[facebook.github.io/react-native](官网)
+
+```bash
+npm install watchman
+sudo npm install -g react-native-cli 
+react-native init AwesomeProject //创建项目
+cd AwesomeProject
+react-native run-ios // 运行
+```

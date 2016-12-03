@@ -7,6 +7,7 @@ var PATH = './public/data/';
  * 读取数据模块,供客户端调用
  * date / read ? type = it
  * date / read ? type = it.json
+ * 查询接口，token校验
  */
 router.get('/read', function(req, res, next) {
     var type = req.param('type') || '';
@@ -41,6 +42,13 @@ router.get('/read', function(req, res, next) {
  * get 就是获得直接通过浏览的网址或的数据
  */
 router.post('/write', function(req, res, next) {
+    //判断用户是否登陆
+    if (!req.session.user) {
+        return res.send({
+            status: 0,
+            info: '未登陆(未鉴权认证)'
+        });
+    }
     //文件名
     var type = req.param('type') || '';
     //关键字段
@@ -99,6 +107,13 @@ router.post('/write', function(req, res, next) {
  * @returns
  */
 router.post('/write_config', function(req, res, next) {
+    //判断用户是否登陆
+    if (!req.session.user) {
+        return res.send({
+            status: 0,
+            info: '未登陆(未鉴权认证)'
+        });
+    }
     var data = req.body.data;
     var obj = JSON.parse(data);
     var newData = JSON.stringify(obj);
