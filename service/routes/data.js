@@ -17,9 +17,8 @@ router.get('/read', function(req, res, next) {
                 info: '读取文件失败，服务异常'
             });
         }
-
         var COUNT = 50;
-        // TODO:trycatch
+        // TODO:try catch
         var obj = [];
         try {
             obj = JSON.parse(data.toString());
@@ -99,7 +98,7 @@ router.post('/write', function(req, res, next) {
  * var str = xss(name);
  * @returns
  */
-router.post('/write', function(req, res, next) {
+router.post('/write_config', function(req, res, next) {
     var data = req.body.data;
     var obj = JSON.parse(data);
     var newData = JSON.stringify(obj);
@@ -118,7 +117,32 @@ router.post('/write', function(req, res, next) {
     });
 
 });
+/**
+ * 登陆接口
+ * username , password
+ * TODO: 对用户密码进行校验
+ * xxs处理，判断是否为空
+ * 密码加密处理 md5(md5(password + '随机字符串'))
+ * 可以写入 JSON 文件
+ */
+router.post('/login', function(req, res, next) {
+    var username = req.body.username;
+    var password = req.body.password;
 
+    if (username === 'admin' && password === 'admin') {
+        req.session.user = {
+            username: username
+        };
+        return res.send({
+            status: 1,
+            info: '登陆成功'
+        });
+    }
+    return res.send({
+        status: 0,
+        info: '登陆失败'
+    });
+});
 /**
  * 数据存储生成id
  * id:"FC3C6CD6-9DF1-4D18-9497-0685A0739B52"

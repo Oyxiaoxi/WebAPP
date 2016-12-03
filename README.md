@@ -27,3 +27,8 @@ sudo npm instasll -g supervisor
 supervisor bin/www
 ```
 
+## 安装 session
+
+```bash
+npm install express-session --save
+```

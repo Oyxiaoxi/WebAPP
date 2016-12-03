@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+// 登陆中间键
+var session = require('express-session');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -22,6 +24,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// 验证密钥
+app.use(session({
+    secret: '#sddjswjdhww22ygfw2233@@@%#$!@%Q!%*12',
+    resave: false,
+    saveUninitialized: true
+}));
 
 app.use('/', index);
 app.use('/users', users);
