@@ -3,7 +3,11 @@ var router = express.Router();
 var fs = require('fs');
 var PATH = './public/data/';
 
-// 读取数据模块 date/read?type=it 
+/**
+ * 读取数据模块,供客户端调用
+ * date / read ? type = it
+ * date / read ? type = it.json
+ */
 router.get('/read', function(req, res, next) {
     var type = req.param('type') || '';
     fs.readFile(PATH + type + '.json', function(err, data) {
@@ -13,6 +17,7 @@ router.get('/read', function(req, res, next) {
                 info: '读取文件失败，服务异常'
             });
         }
+
         var COUNT = 50;
         // TODO:trycatch
         var obj = [];
@@ -31,14 +36,12 @@ router.get('/read', function(req, res, next) {
         });
     });
 });
-//数据存储模块 后台开发使用
+/**
+ * 数据存储模块 后台开发使用
+ * post 是获得 post提交的数据
+ * get 就是获得直接通过浏览的网址或的数据
+ */
 router.post('/write', function(req, res, next) {
-    /*if (!req.session.user) {
-        return res.send({
-            status: 0,
-            info: '未鉴权认证'
-        });
-    }*/
     //文件名
     var type = req.param('type') || '';
     //关键字段
@@ -86,7 +89,40 @@ router.post('/write', function(req, res, next) {
         });
     });
 });
-//guid
+
+/**
+ * 阅读模块写入接口
+ * TODO:进行提交数据的验证
+ * 防 xxs 攻击
+ * npm install xss
+ * var xss = require('xss')
+ * var str = xss(name);
+ * @returns
+ */
+router.post('/write', function(req, res, next) {
+    var data = req.body.data;
+    var obj = JSON.parse(data);
+    var newData = JSON.stringify(obj);
+    // 写入
+    fs.writeFile(PATH + 'config.json', newData, function(err) {
+        if (err) {
+            return res.send({
+                status: 0,
+                info: '写入数据失败'
+            });
+        }
+        return res.send({
+            status: 1,
+            info: obj
+        });
+    });
+
+});
+
+/**
+ * 数据存储生成id
+ * id:"FC3C6CD6-9DF1-4D18-9497-0685A0739B52"
+ */
 function guidGenerate() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
         var r = Math.random() * 16 | 0,
@@ -94,4 +130,5 @@ function guidGenerate() {
         return v.toString(16);
     }).toUpperCase();
 }
+
 module.exports = router;
