@@ -10,6 +10,7 @@ import {
 
 class Weather extends Component{
     render(){
+        // 必须返回元素
         return(
             <View>
                 <Text style={styles.Text}>
