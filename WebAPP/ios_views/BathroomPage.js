@@ -5,17 +5,18 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  WebView
 } from 'react-native';
+
+import tWebView from './TWebView';
 
 class BathroomPage extends Component{
     render(){
         // 必须返回元素
         return(
-            <View>
-                <Text style={styles.Text}>
-                    BathroomPage
-                </Text>
+            <View style={styles.container}>
+                <WebView url="https://www.xxxbaidu.com/"/>
             </View>
         );
     }
@@ -23,8 +24,8 @@ class BathroomPage extends Component{
 
 // StyleSheet 样式类
 const styles = StyleSheet.create({
-    Text:{
-        fontSize:40
+    container:{
+        flex:1
     }
 });
 
