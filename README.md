@@ -39,7 +39,7 @@ npm install express-session --save
 
 ## React Native环境搭建
 
-[facebook.github.io/react-native](官网)
+[https://facebook.github.io/react-native](官网)
 
 ```bash
 npm install watchman
@@ -48,3 +48,8 @@ react-native init AwesomeProject //创建项目
 cd AwesomeProject
 react-native run-ios // 运行
 ```
+## TwebVoew -> Packaging success
+
+##### 需要注意的是： 自定义 TWebView 方法 ，及 TWebView 里渲染视图时的判断方法( onError, _showError, startInLoadingState, source )
+
+##### 有没有办法可以解决 RCTBundleURLProvider.h 这个头文件丢失： 当我每更换一台设备重新完成此项目时，都会出现这个问题。有试过百度大神的各种方法，都无法达到其效果！无耐的，把整个项目重新跑了一次，中间各种心酸各种泪 ...
