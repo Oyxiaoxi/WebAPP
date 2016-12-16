@@ -9,18 +9,19 @@ import {
   WebView
 } from 'react-native';
 
-import tWebView from './TWebView';
+import TwebView from './TwebView';
 
 class BathroomPage extends Component{
     render(){
         // 必须返回元素
         return(
             <View style={styles.container}>
-                <WebView url="https://www.xxxbaidu.com/"/>
+                <TwebView url="https://github.com/facebook/react-native"/>
             </View>
         );
     }
 }
+
 
 // StyleSheet 样式类
 const styles = StyleSheet.create({
