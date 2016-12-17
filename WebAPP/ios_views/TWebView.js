@@ -65,8 +65,12 @@ const styles = StyleSheet.create({
     errorInfo:{
         flex: 1,
         justifyContent: "center",
+<<<<<<< HEAD
         alignItems: "center"
         //flexDirection: 'row'
+=======
+        alignItems:"center"
+>>>>>>> b084fb449f84b081717a28e8b9d7cd3620309e96
     },
     errorInfoText:{
         fontSize: 16,
