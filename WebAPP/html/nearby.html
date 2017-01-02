@@ -52,6 +52,7 @@
   <div id="container"></div>
   <div id="panel"></div>
   <script type="text/javascript">
+  // 判断一个 UA 
     var isiPhone = navigator.userAgent.toLocaleLowerCase().match(/iPhone/i);
     var map = new AMap.Map('container', {
       resizeEnable: true,
@@ -116,6 +117,7 @@
       AMap.service(["AMap.PlaceSearch"], function() {
         var placeSearch = new AMap.PlaceSearch({
           pageSize: 10,
+          // 返回基础数据
           extensions: 'base',
           type: '200300|200300|200302|200303'
         });
